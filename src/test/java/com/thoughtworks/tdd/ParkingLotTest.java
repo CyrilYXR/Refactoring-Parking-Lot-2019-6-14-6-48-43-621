@@ -28,4 +28,14 @@ public class ParkingLotTest {
         //THEN
         Assertions.assertNotNull(car);
     }
+
+    // e:2min a:2min
+    @Test
+    void should_failed_when_pass_null_car_to_parking_boy(){
+        //GIVEN
+        Car car = null;
+        ParkingBoy parkingBoy = new ParkingBoy();
+        //WHEN + THEN
+        Assertions.assertThrows(RuntimeException.class, ()->parkingBoy.park(car));
+    }
 }
