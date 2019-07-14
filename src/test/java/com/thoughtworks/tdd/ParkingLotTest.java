@@ -309,6 +309,19 @@ public class ParkingLotTest {
         Assertions.assertNotNull(ticket);
     }
 
+    // e:3min a:3min
+    @Test
+    void should_return_car_when_manager_fetch_the_car_from_manager_own_lots(){
+        //GIVEN
+        Manager manager = new Manager();
+        ParkingLot parkingLot = new ParkingLot(manager);
+        Ticket ticket = manager.park(new Car(), parkingLot);
+        //THEN
+        Car car = manager.fetch(ticket, parkingLot);
+        //WHEN
+        Assertions.assertNotNull(car);
+    }
+
 
 
 }

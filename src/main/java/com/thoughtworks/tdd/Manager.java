@@ -36,4 +36,13 @@ public class Manager extends ParkingBoy{
             return null;
         }
     }
+
+    public Car fetch(Ticket ticket, ParkingLot parkingLot) {
+        if(parkingLot.getManager() == this){
+            super.setParkingLot(parkingLot);
+            return super.fetch(ticket);
+        } else {
+            return null;
+        }
+    }
 }
