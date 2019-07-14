@@ -8,6 +8,11 @@ public class ParkingLot {
     private int capacity = 10;
     private String lotCode;
 
+    public ParkingLot( String lotCode, int capacity) {
+        this.capacity = capacity;
+        this.lotCode = lotCode;
+    }
+
     public ParkingLot() {
     }
 
@@ -58,4 +63,7 @@ public class ParkingLot {
         return null;
     }
 
+    public int getEmptyPositions(){
+        return this.capacity - this.getCars().size();
+    }
 }

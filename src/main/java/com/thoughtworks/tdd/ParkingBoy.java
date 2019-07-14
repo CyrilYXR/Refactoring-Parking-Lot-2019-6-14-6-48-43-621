@@ -50,13 +50,14 @@ public class ParkingBoy {
         }
 
         // select a parking lot
-        for(int i=0; i<this.parkingLots.size(); i++){
-            if(this.parkingLots.get(i) != null
-                    && this.parkingLots.get(i).getCars().size() < this.parkingLots.get(i).getCapacity()) {
-                this.parkingLot = this.parkingLots.get(i);
-                break;
-            }
-        }
+//        for(int i=0; i<this.parkingLots.size(); i++){
+//            if(this.parkingLots.get(i) != null
+//                    && this.parkingLots.get(i).getCars().size() < this.parkingLots.get(i).getCapacity()) {
+//                this.parkingLot = this.parkingLots.get(i);
+//                break;
+//            }
+//        }
+        this.parkingLot = selectAParkingLot(this.parkingLots);
 
         if(this.parkingLot.getCars().size() == this.parkingLot.getCapacity()){
             errMes = "Not enough position.";
@@ -66,7 +67,15 @@ public class ParkingBoy {
         return this.parkingLot.park(car);
     }
 
-
+    public ParkingLot selectAParkingLot(List<ParkingLot> parkingLots) {
+        for(int i=0; i<parkingLots.size(); i++){
+            if(parkingLots.get(i) != null
+                    && parkingLots.get(i).getCars().size() < parkingLots.get(i).getCapacity()) {
+                return parkingLots.get(i);
+            }
+        }
+        return this.parkingLot;
+    }
 
     public Car fetch(Ticket ticket) {
         if(ticket == null){
