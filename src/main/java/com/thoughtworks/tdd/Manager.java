@@ -27,6 +27,10 @@ public class Manager extends ParkingBoy{
     public Car specifyBoyToFetch(ParkingBoy parkingBoy, ParkingLot parkingLot, Ticket ticket) {
         if(parkingLot.getManagements().contains(parkingBoy)){
             parkingBoy.setParkingLot(parkingLot);
+            if(parkingBoy.fetch(ticket) == null) {
+                this.setErrMes(parkingBoy.getErrMes());
+                return null;
+            }
             return parkingBoy.fetch(ticket);
         } else {
             throw new RuntimeException();

@@ -340,5 +340,22 @@ public class ParkingLotTest {
         Assertions.assertEquals("Not enough position.", errMsg);
     }
 
+    //e:3min a
+    @Test
+    void should_return_unrecognized_parking_ticket_when_boy_failed_to_do_the_operation(){
+        // Given
+        Manager manager = new Manager();
+        ParkingBoy parkingBoy = new ParkingBoy();
+        ParkingLot parkingLot = new ParkingLot(5, manager);
+        manager.addBoyToLotManagerments(parkingBoy, parkingLot);
+
+        // When
+        Car car = manager.specifyBoyToFetch(parkingBoy, parkingLot, new Ticket(1));
+        String errMsg = manager.getErrMes();
+
+        //Then
+        Assertions.assertNull(car);
+        Assertions.assertEquals("Unrecognized parking ticket.", errMsg);
+    }
 
 }
