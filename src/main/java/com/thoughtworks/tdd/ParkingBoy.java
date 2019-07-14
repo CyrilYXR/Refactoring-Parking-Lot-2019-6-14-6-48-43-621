@@ -2,6 +2,15 @@ package com.thoughtworks.tdd;
 
 public class ParkingBoy {
     private ParkingLot parkingLot;
+    private String errMes;
+
+    public String getErrMes() {
+        return errMes;
+    }
+
+    public void setErrMes(String errMes) {
+        this.errMes = errMes;
+    }
 
     public ParkingBoy() {
     }
@@ -26,6 +35,14 @@ public class ParkingBoy {
     }
 
     public Car fetch(Ticket ticket) {
-        return parkingLot.fetch(ticket);
+        Car car = parkingLot.fetch(ticket);
+        if(car == null){
+            this.errMes = "Unrecognized parking ticket.";
+        }
+        return car;
+    }
+
+    public String queryErrorMessage() {
+        return this.errMes;
     }
 }
