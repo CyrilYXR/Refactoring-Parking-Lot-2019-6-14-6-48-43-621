@@ -143,4 +143,21 @@ public class ParkingLotTest {
         Assertions.assertEquals("Please provide your parking ticket.", parkingBoy.queryErrorMessage());
     }
 
+    // e:3min a:3min
+    @Test
+    void should_get_message_no_enough_position_when_parking_without_a_position(){
+        //GIVEN
+        ParkingLot parkingLot = new ParkingLot();
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+        for(int i = 0; i < 10; i++){
+            parkingBoy.park(new Car());
+        }
+        //WHEN
+        Car car = new Car();
+        Ticket ticket = parkingBoy.park(car);
+        //THEN
+        Assertions.assertNull(ticket);
+        Assertions.assertEquals("Not enough position.", parkingBoy.queryErrorMessage());
+    }
+
 }

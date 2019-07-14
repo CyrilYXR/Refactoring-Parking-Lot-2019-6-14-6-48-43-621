@@ -31,6 +31,10 @@ public class ParkingBoy {
         if(car == null){
             throw new RuntimeException();
         }
+        if(this.parkingLot.getCars().size() == this.parkingLot.getCapacity()){
+            errMes = "Not enough position.";
+            return null;
+        }
         return this.parkingLot.park(car);
     }
 
