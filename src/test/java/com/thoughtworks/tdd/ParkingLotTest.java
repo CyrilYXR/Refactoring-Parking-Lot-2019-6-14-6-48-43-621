@@ -98,4 +98,22 @@ public class ParkingLotTest {
         //THEN
         Assertions.assertNull(carNull);
     }
+
+    // e:5min a:5min
+    @Test
+    void should_not_park_the_car_when_parking_lot_has_not_position(){
+        //GIVEN
+        ParkingLot parkingLot = new ParkingLot();
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+        for(int i = 0; i < 10; i++){
+            parkingBoy.park(new Car());
+        }
+        //WHEN
+        Car car = new Car();
+        Ticket ticket = parkingBoy.park(car);
+        //THEN
+        Assertions.assertFalse(parkingLot.getCars().contains(car));
+        Assertions.assertNull(ticket);
+    }
+
 }
