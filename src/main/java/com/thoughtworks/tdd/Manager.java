@@ -9,4 +9,12 @@ public class Manager extends ParkingBoy{
         parkingBoys.add(parkingBoy);
         parkingLot.setManagements(parkingBoys);
     }
+
+    public Ticket specifyBoyToPark(ParkingBoy parkingBoy, ParkingLot parkingLot, Car car) {
+        if(parkingLot.getManagements().contains(parkingBoy)){
+            parkingBoy.setParkingLot(parkingLot);
+            return parkingBoy.park(car);
+        }
+        return null;
+    }
 }

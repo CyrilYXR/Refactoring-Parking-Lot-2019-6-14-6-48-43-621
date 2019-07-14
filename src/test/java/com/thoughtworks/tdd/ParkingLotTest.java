@@ -247,6 +247,23 @@ public class ParkingLotTest {
         Assertions.assertTrue(parkingLot.getManagements().contains(smallParkingBoy));
     }
 
+    // e:10min a:12min
+    @Test
+    void should_return_ticket_when_manager_specify_a_parking_boy_to_park_the_car_only_from_their_lot(){
+        //GIVEN
+        Car car = new Car();
+        Manager manager = new Manager();
+        ParkingBoy parkingBoy = new ParkingBoy();
+        ParkingLot parkingLot = new ParkingLot(manager);
+        manager.addBoyToLotManagerments(parkingBoy, parkingLot);
+
+        //WHEN
+        Ticket ticket = manager.specifyBoyToPark(parkingBoy, parkingLot, car);
+
+        //THEN
+        Assertions.assertNotNull(ticket);
+    }
+
 
 
 }
