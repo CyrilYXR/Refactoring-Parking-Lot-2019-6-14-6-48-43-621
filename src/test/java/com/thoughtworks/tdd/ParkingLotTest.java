@@ -297,6 +297,18 @@ public class ParkingLotTest {
 
     }
 
+    // e:5min a:3min
+    @Test
+    void should_return_ticket_when_manager_park_the_car_from_manager_own_lots(){
+        //GIVEN
+        Manager manager = new Manager();
+        ParkingLot parkingLot = new ParkingLot(manager);
+        //THEN
+        Ticket ticket = manager.park(new Car(), parkingLot);
+        //WHEN
+        Assertions.assertNotNull(ticket);
+    }
+
 
 
 }

@@ -27,4 +27,13 @@ public class Manager extends ParkingBoy{
             throw new RuntimeException();
         }
     }
+
+    public Ticket park(Car car, ParkingLot parkingLot) {
+        if(parkingLot.getManager() == this){
+            super.setParkingLot(parkingLot);
+            return super.park(car);
+        } else {
+            return null;
+        }
+    }
 }
