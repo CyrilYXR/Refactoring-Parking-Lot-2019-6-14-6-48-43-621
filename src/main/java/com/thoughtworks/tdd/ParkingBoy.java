@@ -35,6 +35,10 @@ public class ParkingBoy {
     }
 
     public Car fetch(Ticket ticket) {
+        if(ticket == null){
+            this.errMes = "Please provide your parking ticket.";
+            return null;
+        }
         Car car = parkingLot.fetch(ticket);
         if(car == null){
             this.errMes = "Unrecognized parking ticket.";
