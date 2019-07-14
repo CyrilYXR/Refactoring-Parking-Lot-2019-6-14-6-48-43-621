@@ -3,6 +3,9 @@ package com.thoughtworks.tdd;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ParkingLotTest {
 
     // e:2min a:2min
@@ -159,5 +162,28 @@ public class ParkingLotTest {
         Assertions.assertNull(ticket);
         Assertions.assertEquals("Not enough position.", parkingBoy.queryErrorMessage());
     }
+
+    // e:10min a:14min
+    @Test
+    void should_park_car_to_second_parking_lot_when_first_parking_lot_is_full(){
+        //GIVEN
+        ParkingLot parkingLot1 = new ParkingLot("1");
+        ParkingLot parkingLot2 = new ParkingLot("2");
+        List<ParkingLot> parkingLots = new ArrayList<>();
+        parkingLots.add(parkingLot1);
+        parkingLots.add(parkingLot2);
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
+        for(int i = 0; i < 10; i++){
+            parkingBoy.park(new Car());
+        }
+        //WHEN
+        Car car = new Car();
+        Ticket ticket = parkingBoy.park(car);
+        //THEN
+        Assertions.assertNotNull(ticket);
+        Assertions.assertEquals("2", parkingBoy.getParkingLot().getLotCode());
+    }
+
+
 
 }

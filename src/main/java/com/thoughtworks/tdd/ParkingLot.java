@@ -6,6 +6,18 @@ import java.util.List;
 public class ParkingLot {
     private List<Car> cars = new ArrayList<>();
     private int capacity = 10;
+    private String lotCode;
+
+    public ParkingLot() {
+    }
+
+    public String getLotCode() {
+        return lotCode;
+    }
+
+    public void setLotCode(String lotCode) {
+        this.lotCode = lotCode;
+    }
 
     public int getCapacity() {
         return capacity;
@@ -21,6 +33,10 @@ public class ParkingLot {
 
     public void setCars(List<Car> cars) {
         this.cars = cars;
+    }
+
+    public ParkingLot(String lotCode) {
+        this.lotCode = lotCode;
     }
 
     public Ticket park(Car car){
@@ -41,4 +57,5 @@ public class ParkingLot {
         }
         return null;
     }
+
 }

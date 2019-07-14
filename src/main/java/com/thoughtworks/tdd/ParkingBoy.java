@@ -1,8 +1,25 @@
 package com.thoughtworks.tdd;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ParkingBoy {
     private ParkingLot parkingLot;
     private String errMes;
+    private List<ParkingLot> parkingLots = new ArrayList<>();
+
+    public ParkingBoy(List<ParkingLot> parkingLots) {
+        this.parkingLots = parkingLots;
+    }
+
+    public List<ParkingLot> getParkingLots() {
+        return parkingLots;
+    }
+
+    public void setParkingLots(List<ParkingLot> parkingLots) {
+        this.parkingLots = parkingLots;
+        this.parkingLot = parkingLots.get(0);
+    }
 
     public String getErrMes() {
         return errMes;
@@ -31,12 +48,25 @@ public class ParkingBoy {
         if(car == null){
             throw new RuntimeException();
         }
+
+        // select a parking lot
+        for(int i=0; i<this.parkingLots.size(); i++){
+            if(this.parkingLots.get(i) != null
+                    && this.parkingLots.get(i).getCars().size() < this.parkingLots.get(i).getCapacity()) {
+                this.parkingLot = this.parkingLots.get(i);
+                break;
+            }
+        }
+
         if(this.parkingLot.getCars().size() == this.parkingLot.getCapacity()){
             errMes = "Not enough position.";
             return null;
         }
+
         return this.parkingLot.park(car);
     }
+
+
 
     public Car fetch(Ticket ticket) {
         if(ticket == null){
