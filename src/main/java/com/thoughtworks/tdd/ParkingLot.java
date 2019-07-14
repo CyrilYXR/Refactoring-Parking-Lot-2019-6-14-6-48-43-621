@@ -22,6 +22,7 @@ public class ParkingLot {
     public Car fetch(Ticket ticket){
         for(Car car : cars){
             if(car.hashCode() == ticket.getCode()){
+                cars.remove(car);
                 return car;
             }
         }
