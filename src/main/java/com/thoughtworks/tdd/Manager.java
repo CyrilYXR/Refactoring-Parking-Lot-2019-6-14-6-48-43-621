@@ -14,15 +14,17 @@ public class Manager extends ParkingBoy{
         if(parkingLot.getManagements().contains(parkingBoy)){
             parkingBoy.setParkingLot(parkingLot);
             return parkingBoy.park(car);
+        } else {
+            throw new RuntimeException();
         }
-        return null;
     }
 
     public Car specifyBoyToFetch(ParkingBoy parkingBoy, ParkingLot parkingLot, Ticket ticket) {
         if(parkingLot.getManagements().contains(parkingBoy)){
             parkingBoy.setParkingLot(parkingLot);
             return parkingBoy.fetch(ticket);
+        } else {
+            throw new RuntimeException();
         }
-        return null;
     }
 }

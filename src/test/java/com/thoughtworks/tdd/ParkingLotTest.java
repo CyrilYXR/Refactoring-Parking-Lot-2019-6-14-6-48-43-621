@@ -281,7 +281,21 @@ public class ParkingLotTest {
         Assertions.assertNotNull(car);
     }
 
+    // e:2min a:2min
+    @Test
+    void should_failed_when_manager_specify_a_parking_boy_to_park_or_fetch_car_not_from_their_lot(){
+        //GIVEN
+        Manager manager = new Manager();
+        ParkingBoy parkingBoy = new ParkingBoy();
+        ParkingLot parkingLot1 = new ParkingLot(manager);
+        ParkingLot parkingLot2 = new ParkingLot(manager);
+        manager.addBoyToLotManagerments(parkingBoy, parkingLot1);
 
+        //WHEN + THEN
+        Assertions.assertThrows(RuntimeException.class, ()-> manager.specifyBoyToPark(parkingBoy, parkingLot2, new Car()));
+        Assertions.assertThrows(RuntimeException.class, ()-> manager.specifyBoyToFetch(parkingBoy, parkingLot2, new Ticket()));
+
+    }
 
 
 
