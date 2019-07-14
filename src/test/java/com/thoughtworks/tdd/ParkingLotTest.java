@@ -322,7 +322,7 @@ public class ParkingLotTest {
         Assertions.assertNotNull(car);
     }
 
-
+    // e:3min a:5min
     @Test
     void should_return_not_enough_position_when_boy_failed_to_do_the_operation(){
         // Given
@@ -340,7 +340,7 @@ public class ParkingLotTest {
         Assertions.assertEquals("Not enough position.", errMsg);
     }
 
-    //e:3min a
+    //e:3min a:1min
     @Test
     void should_return_unrecognized_parking_ticket_when_boy_failed_to_do_the_operation(){
         // Given
