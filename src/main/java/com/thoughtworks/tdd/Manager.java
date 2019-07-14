@@ -13,6 +13,11 @@ public class Manager extends ParkingBoy{
     public Ticket specifyBoyToPark(ParkingBoy parkingBoy, ParkingLot parkingLot, Car car) {
         if(parkingLot.getManagements().contains(parkingBoy)){
             parkingBoy.setParkingLot(parkingLot);
+            Ticket ticket = parkingBoy.park(car);
+            if(ticket == null){
+                this.setErrMes(parkingBoy.getErrMes());
+                return null;
+            }
             return parkingBoy.park(car);
         } else {
             throw new RuntimeException();

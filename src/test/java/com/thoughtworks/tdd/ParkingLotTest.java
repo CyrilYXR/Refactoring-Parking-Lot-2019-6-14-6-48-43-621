@@ -323,5 +323,22 @@ public class ParkingLotTest {
     }
 
 
+    @Test
+    void should_return_not_enough_position_when_boy_failed_to_do_the_operation(){
+        // Given
+        Car car = new Car();
+        Manager manager = new Manager();
+        ParkingBoy parkingBoy = new ParkingBoy();
+        ParkingLot parkingLot = new ParkingLot(0, manager);
+        manager.addBoyToLotManagerments(parkingBoy, parkingLot);
+
+        // When
+        manager.specifyBoyToPark(parkingBoy, parkingLot, car);
+        String errMsg = manager.getErrMes();
+
+        //Then
+        Assertions.assertEquals("Not enough position.", errMsg);
+    }
+
 
 }

@@ -35,6 +35,11 @@ public class ParkingLot {
         this.lotCode = lotCode;
     }
 
+    public ParkingLot(int capacity, Manager manager) {
+        this.capacity = capacity;
+        this.manager = manager;
+    }
+
     public ParkingLot() {
     }
 
