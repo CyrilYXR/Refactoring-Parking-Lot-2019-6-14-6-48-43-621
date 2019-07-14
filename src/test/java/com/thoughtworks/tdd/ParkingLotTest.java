@@ -10,7 +10,8 @@ public class ParkingLotTest {
     void should_get_a_ticket_when_park_a_car(){
         //GIVEN
         Car car = new Car();
-        ParkingBoy parkingBoy = new ParkingBoy();
+        ParkingLot parkingLot = new ParkingLot();
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
         //WHEN
         Ticket ticket = parkingBoy.park(car);
         //THEN
@@ -21,7 +22,8 @@ public class ParkingLotTest {
     @Test
     void should_return_a_car_when_give_a_ticket(){
         //GIVEN
-        ParkingBoy parkingBoy = new ParkingBoy();
+        ParkingLot parkingLot = new ParkingLot();
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
         Ticket ticket = parkingBoy.park(new Car());
         //WHEN
         Car car = parkingBoy.fetch(ticket);
@@ -37,5 +39,23 @@ public class ParkingLotTest {
         ParkingBoy parkingBoy = new ParkingBoy();
         //WHEN + THEN
         Assertions.assertThrows(RuntimeException.class, ()->parkingBoy.park(car));
+    }
+
+    // e:10min a:15min
+    @Test
+    void should_return_correspond_car_when_park_multiply_cars(){
+        //GIVEN
+        Car car1 = new Car();
+        Car car2 = new Car();
+        ParkingLot parkingLot = new ParkingLot();
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+        Ticket ticket1 = parkingBoy.park(car1);
+        Ticket ticket2 = parkingBoy.park(car2);
+        //WHEN
+        Car fetchCar1 = parkingBoy.fetch(ticket1);
+        Car fetchCar2 = parkingBoy.fetch(ticket2);
+        //THEN
+        Assertions.assertEquals(car1, fetchCar1);
+        Assertions.assertEquals(car2, fetchCar2);
     }
 }
