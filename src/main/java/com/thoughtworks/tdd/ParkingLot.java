@@ -7,8 +7,30 @@ public class ParkingLot {
     private List<Car> cars = new ArrayList<>();
     private int capacity = 10;
     private String lotCode;
+    private List<? super ParkingBoy> managements = new ArrayList<>();
+    private Manager manager;
 
-    public ParkingLot( String lotCode, int capacity) {
+    public List<? super ParkingBoy> getManagements() {
+        return managements;
+    }
+
+    public void setManagements(List<? super ParkingBoy> managements) {
+        this.managements = managements;
+    }
+
+    public Manager getManager() {
+        return manager;
+    }
+
+    public void setManager(Manager manager) {
+        this.manager = manager;
+    }
+
+    public ParkingLot(Manager manager) {
+        this.manager = manager;
+    }
+
+    public ParkingLot(String lotCode, int capacity) {
         this.capacity = capacity;
         this.lotCode = lotCode;
     }

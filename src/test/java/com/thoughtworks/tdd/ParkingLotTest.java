@@ -230,6 +230,23 @@ public class ParkingLotTest {
         Assertions.assertEquals("2", superSmallParkingBoy.getParkingLot().getLotCode());
     }
 
+    // e:10min a:12min
+    @Test
+    void should_contain_parking_boy_when_manager_add_parking_boy_to_management_list(){
+        //GIVEN
+        Manager manager = new Manager();
+        ParkingBoy parkingBoy = new ParkingBoy();
+        SmallParkingBoy smallParkingBoy = new SmallParkingBoy();
+        ParkingLot parkingLot = new ParkingLot(manager);
+        //WHEN
+        manager.addBoyToLotManagerments(parkingBoy, parkingLot);
+        manager.addBoyToLotManagerments(smallParkingBoy, parkingLot);
+
+        //THEN
+        Assertions.assertTrue(parkingLot.getManagements().contains(parkingBoy));
+        Assertions.assertTrue(parkingLot.getManagements().contains(smallParkingBoy));
+    }
+
 
 
 }

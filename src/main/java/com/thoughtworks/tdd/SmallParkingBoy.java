@@ -4,6 +4,9 @@ import java.util.List;
 
 public class SmallParkingBoy extends ParkingBoy{
 
+    public SmallParkingBoy() {
+    }
+
     public SmallParkingBoy(List<ParkingLot> parkingLots) {
         super(parkingLots);
     }
