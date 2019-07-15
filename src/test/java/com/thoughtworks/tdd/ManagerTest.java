@@ -1,15 +1,23 @@
 package com.thoughtworks.tdd;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class ManagerTest {
+
+    private Manager manager;
+
+    @BeforeEach
+    public void setup(){
+        manager = new Manager();
+    }
+
 
     // e:10min a:12min
     @Test
     void should_contain_parking_boy_when_manager_add_parking_boy_to_management_list(){
         //GIVEN
-        Manager manager = new Manager();
         ParkingBoy parkingBoy = new ParkingBoy();
         SmallParkingBoy smallParkingBoy = new SmallParkingBoy();
         ParkingLot parkingLot = new ParkingLot(manager);
@@ -27,7 +35,6 @@ public class ManagerTest {
     void should_return_ticket_when_manager_specify_a_parking_boy_to_park_the_car_only_from_their_lot(){
         //GIVEN
         Car car = new Car();
-        Manager manager = new Manager();
         ParkingBoy parkingBoy = new ParkingBoy();
         ParkingLot parkingLot = new ParkingLot(manager);
         manager.addBoyToLotManagements(parkingBoy, parkingLot);
@@ -43,7 +50,6 @@ public class ManagerTest {
     @Test
     void should_return_car_when_manager_specify_a_parking_boy_to_fetch_car_from_their_lot(){
         //GIVEN
-        Manager manager = new Manager();
         ParkingBoy parkingBoy = new ParkingBoy();
         ParkingLot parkingLot = new ParkingLot(manager);
         manager.addBoyToLotManagements(parkingBoy, parkingLot);
@@ -60,7 +66,6 @@ public class ManagerTest {
     @Test
     void should_failed_when_manager_specify_a_parking_boy_to_park_or_fetch_car_not_from_their_lot(){
         //GIVEN
-        Manager manager = new Manager();
         ParkingBoy parkingBoy = new ParkingBoy();
         ParkingLot parkingLot1 = new ParkingLot(manager);
         ParkingLot parkingLot2 = new ParkingLot(manager);
@@ -76,7 +81,6 @@ public class ManagerTest {
     @Test
     void should_return_ticket_when_manager_park_the_car_from_manager_own_lots(){
         //GIVEN
-        Manager manager = new Manager();
         ParkingLot parkingLot = new ParkingLot(manager);
         //THEN
         Ticket ticket = manager.park(new Car(), parkingLot);
@@ -88,7 +92,6 @@ public class ManagerTest {
     @Test
     void should_return_car_when_manager_fetch_the_car_from_manager_own_lots(){
         //GIVEN
-        Manager manager = new Manager();
         ParkingLot parkingLot = new ParkingLot(manager);
         Ticket ticket = manager.park(new Car(), parkingLot);
         //THEN
@@ -102,7 +105,6 @@ public class ManagerTest {
     void should_return_not_enough_position_when_boy_failed_to_do_the_operation(){
         // Given
         Car car = new Car();
-        Manager manager = new Manager();
         ParkingBoy parkingBoy = new ParkingBoy();
         ParkingLot parkingLot = new ParkingLot(0, manager);
         manager.addBoyToLotManagements(parkingBoy, parkingLot);
@@ -119,7 +121,6 @@ public class ManagerTest {
     @Test
     void should_return_unrecognized_parking_ticket_when_boy_failed_to_do_the_operation(){
         // Given
-        Manager manager = new Manager();
         ParkingBoy parkingBoy = new ParkingBoy();
         ParkingLot parkingLot = new ParkingLot(5, manager);
         manager.addBoyToLotManagements(parkingBoy, parkingLot);
