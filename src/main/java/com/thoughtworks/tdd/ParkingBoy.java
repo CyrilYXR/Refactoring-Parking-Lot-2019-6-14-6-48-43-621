@@ -60,7 +60,7 @@ public class ParkingBoy {
         this.parkingLot = selectAParkingLot(this.parkingLots);
 
         if(this.parkingLot.getCars().size() == this.parkingLot.getCapacity()){
-            errorMessage = "Not enough position.";
+            errorMessage = ErrorMessageEnum.NO_POSITION.getDesc();
             return null;
         }
 
@@ -79,12 +79,12 @@ public class ParkingBoy {
 
     public Car fetch(Ticket ticket) {
         if(ticket == null){
-            this.errorMessage = "Please provide your parking ticket.";
+            this.errorMessage = ErrorMessageEnum.NO_TICKET.getDesc();
             return null;
         }
         Car car = parkingLot.fetch(ticket);
         if(car == null){
-            this.errorMessage = "Unrecognized parking ticket.";
+            this.errorMessage = ErrorMessageEnum.UNRECOGNIZED_TICKET.getDesc();
         }
         return car;
     }
