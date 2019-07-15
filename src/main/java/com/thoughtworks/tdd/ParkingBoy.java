@@ -69,9 +69,9 @@ public class ParkingBoy {
 
     public ParkingLot selectAParkingLot(List<ParkingLot> parkingLots) {
         for(int i=0; i<parkingLots.size(); i++){
-            if(parkingLots.get(i) != null
-                    && parkingLots.get(i).getCars().size() < parkingLots.get(i).getCapacity()) {
-                return parkingLots.get(i);
+            ParkingLot parkingLot = parkingLots.get(i);
+            if(parkingLot != null && parkingLot.getCars().size() < parkingLot.getCapacity()) {
+                return parkingLot;
             }
         }
         return this.parkingLot;
