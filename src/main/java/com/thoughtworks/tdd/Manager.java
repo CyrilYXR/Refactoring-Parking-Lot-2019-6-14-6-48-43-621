@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Manager extends ParkingBoy{
 
-    public void addBoyToLotManagerments(ParkingBoy parkingBoy, ParkingLot parkingLot) {
+    public void addBoyToLotManagements(ParkingBoy parkingBoy, ParkingLot parkingLot) {
         List<? super ParkingBoy> parkingBoys = parkingLot.getManagements();
         parkingBoys.add(parkingBoy);
         parkingLot.setManagements(parkingBoys);
@@ -15,7 +15,7 @@ public class Manager extends ParkingBoy{
             parkingBoy.setParkingLot(parkingLot);
             Ticket ticket = parkingBoy.park(car);
             if(ticket == null){
-                this.setErrMes(parkingBoy.getErrMes());
+                this.setErrorMessage(parkingBoy.getErrorMessage());
                 return null;
             }
             return parkingBoy.park(car);
@@ -28,7 +28,7 @@ public class Manager extends ParkingBoy{
         if(parkingLot.getManagements().contains(parkingBoy)){
             parkingBoy.setParkingLot(parkingLot);
             if(parkingBoy.fetch(ticket) == null) {
-                this.setErrMes(parkingBoy.getErrMes());
+                this.setErrorMessage(parkingBoy.getErrorMessage());
                 return null;
             }
             return parkingBoy.fetch(ticket);

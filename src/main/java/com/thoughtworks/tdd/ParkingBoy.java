@@ -5,7 +5,7 @@ import java.util.List;
 
 public class ParkingBoy {
     private ParkingLot parkingLot;
-    private String errMes;
+    private String errorMessage;
     private List<ParkingLot> parkingLots = new ArrayList<>();
 
     public ParkingBoy(List<ParkingLot> parkingLots) {
@@ -21,12 +21,12 @@ public class ParkingBoy {
         this.parkingLot = parkingLots.get(0);
     }
 
-    public String getErrMes() {
-        return errMes;
+    public String getErrorMessage() {
+        return errorMessage;
     }
 
-    public void setErrMes(String errMes) {
-        this.errMes = errMes;
+    public void setErrorMessage(String errorMessage) {
+        this.errorMessage = errorMessage;
     }
 
     public ParkingBoy() {
@@ -60,7 +60,7 @@ public class ParkingBoy {
         this.parkingLot = selectAParkingLot(this.parkingLots);
 
         if(this.parkingLot.getCars().size() == this.parkingLot.getCapacity()){
-            errMes = "Not enough position.";
+            errorMessage = "Not enough position.";
             return null;
         }
 
@@ -79,17 +79,17 @@ public class ParkingBoy {
 
     public Car fetch(Ticket ticket) {
         if(ticket == null){
-            this.errMes = "Please provide your parking ticket.";
+            this.errorMessage = "Please provide your parking ticket.";
             return null;
         }
         Car car = parkingLot.fetch(ticket);
         if(car == null){
-            this.errMes = "Unrecognized parking ticket.";
+            this.errorMessage = "Unrecognized parking ticket.";
         }
         return car;
     }
 
     public String queryErrorMessage() {
-        return this.errMes;
+        return this.errorMessage;
     }
 }

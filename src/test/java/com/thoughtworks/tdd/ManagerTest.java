@@ -14,8 +14,8 @@ public class ManagerTest {
         SmallParkingBoy smallParkingBoy = new SmallParkingBoy();
         ParkingLot parkingLot = new ParkingLot(manager);
         //WHEN
-        manager.addBoyToLotManagerments(parkingBoy, parkingLot);
-        manager.addBoyToLotManagerments(smallParkingBoy, parkingLot);
+        manager.addBoyToLotManagements(parkingBoy, parkingLot);
+        manager.addBoyToLotManagements(smallParkingBoy, parkingLot);
 
         //THEN
         Assertions.assertTrue(parkingLot.getManagements().contains(parkingBoy));
@@ -30,7 +30,7 @@ public class ManagerTest {
         Manager manager = new Manager();
         ParkingBoy parkingBoy = new ParkingBoy();
         ParkingLot parkingLot = new ParkingLot(manager);
-        manager.addBoyToLotManagerments(parkingBoy, parkingLot);
+        manager.addBoyToLotManagements(parkingBoy, parkingLot);
 
         //WHEN
         Ticket ticket = manager.specifyBoyToPark(parkingBoy, parkingLot, car);
@@ -46,7 +46,7 @@ public class ManagerTest {
         Manager manager = new Manager();
         ParkingBoy parkingBoy = new ParkingBoy();
         ParkingLot parkingLot = new ParkingLot(manager);
-        manager.addBoyToLotManagerments(parkingBoy, parkingLot);
+        manager.addBoyToLotManagements(parkingBoy, parkingLot);
         Ticket ticket = manager.specifyBoyToPark(parkingBoy, parkingLot, new Car());
 
         //WHEN
@@ -64,7 +64,7 @@ public class ManagerTest {
         ParkingBoy parkingBoy = new ParkingBoy();
         ParkingLot parkingLot1 = new ParkingLot(manager);
         ParkingLot parkingLot2 = new ParkingLot(manager);
-        manager.addBoyToLotManagerments(parkingBoy, parkingLot1);
+        manager.addBoyToLotManagements(parkingBoy, parkingLot1);
 
         //WHEN + THEN
         Assertions.assertThrows(RuntimeException.class, ()-> manager.specifyBoyToPark(parkingBoy, parkingLot2, new Car()));
@@ -105,11 +105,11 @@ public class ManagerTest {
         Manager manager = new Manager();
         ParkingBoy parkingBoy = new ParkingBoy();
         ParkingLot parkingLot = new ParkingLot(0, manager);
-        manager.addBoyToLotManagerments(parkingBoy, parkingLot);
+        manager.addBoyToLotManagements(parkingBoy, parkingLot);
 
         // When
         manager.specifyBoyToPark(parkingBoy, parkingLot, car);
-        String errMsg = manager.getErrMes();
+        String errMsg = manager.getErrorMessage();
 
         //Then
         Assertions.assertEquals("Not enough position.", errMsg);
@@ -122,11 +122,11 @@ public class ManagerTest {
         Manager manager = new Manager();
         ParkingBoy parkingBoy = new ParkingBoy();
         ParkingLot parkingLot = new ParkingLot(5, manager);
-        manager.addBoyToLotManagerments(parkingBoy, parkingLot);
+        manager.addBoyToLotManagements(parkingBoy, parkingLot);
 
         // When
         Car car = manager.specifyBoyToFetch(parkingBoy, parkingLot, new Ticket(1));
-        String errMsg = manager.getErrMes();
+        String errMsg = manager.getErrorMessage();
 
         //Then
         Assertions.assertNull(car);
